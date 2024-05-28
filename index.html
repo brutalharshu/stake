@@ -17,7 +17,6 @@
         }
         .login-container {
             text-align: center;
-            
         }
         .login-box {
             padding: 70px;
@@ -50,7 +49,17 @@
 </head>
 <body>
     <div class="login-container">
-        <div class="login-box">
+        <div class="login-box" id="phoneInput">
+            <h2>Enter Phone Number</h2>
+            <input type="tel" id="phoneNumber" placeholder="Phone Number" maxlength="10">
+            <button onclick="sendOTP()">Send OTP</button>
+        </div>
+        <div class="login-box" id="otpInput" style="display: none;">
+            <h2>Enter OTP</h2>
+            <input type="text" id="otp" placeholder="OTP">
+            <button onclick="verifyOTP()">Verify OTP</button>
+        </div>
+        <div class="login-box" id="loginInput" style="display: none;">
             <h2>Login</h2>
             <input type="text" id="username" placeholder="Username">
             <input type="password" id="password" placeholder="Password">
@@ -58,6 +67,31 @@
         </div>
     </div>
     <script>
+        function sendOTP() {
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            if (phoneNumber.length !== 10 || isNaN(phoneNumber)) {
+                alert('Please enter a valid 10-digit phone number.');
+                return;
+            }
+            // Simulating OTP sending process
+            setTimeout(function() {
+                document.getElementById('phoneInput').style.display = 'none';
+                document.getElementById('otpInput').style.display = 'block';
+                // Auto-filling OTP after 2 seconds
+                setTimeout(function() {
+                    document.getElementById('otp').value = Math.floor(1000 + Math.random() * 9000); // Random 4-digit OTP
+                }, 2000);
+            }, 2000);
+        }
+
+        function verifyOTP() {
+            // Simulating OTP verification process
+            setTimeout(function() {
+                document.getElementById('otpInput').style.display = 'none';
+                document.getElementById('loginInput').style.display = 'block';
+            }, 2000);
+        }
+
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;

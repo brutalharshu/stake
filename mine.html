@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Display</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0A0F24; /* Dark blue background */
+            color: #ffffff; /* White text color */
+            background-image: url('./images/mine.png');
+        }
+        .number-box {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #007BFF; /* Bright blue border */
+            margin-bottom: 20px;
+            font-size: 24px;
+            background-color: #131A33; /* Slightly lighter background */
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #06670b; /* Bright blue button */
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .iframe-container {
+            width: 350px;
+            height: 300px;
+            margin-bottom: 20px;
+            border: 2px solid #007BFF; /* Bright blue border */
+            background-color: #131A33; /* Slightly lighter background */
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .iframe-container img {
+            max-width: 90%;
+            max-height: 60%;
+            margin-left: 5%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="iframe-container">
+        <div class="image-container" id="imageContainer"></div>
+    </div>     
+    <button id="startButton" onclick="displayRandomImage()">Start</button>
+    <script>
+        const imageContainer = document.getElementById('imageContainer');
+        const startButton = document.getElementById('startButton');
+
+        const images = [
+            './mines/p1.png',
+            './mines/p2.png',
+            './mines/p3.png',
+            './mines/p4.png',
+            './mines/p5.png',
+            './mines/p6.png',
+            './mines/p7.png',
+            './mines/p8.png',
+            './mines/p9.png',
+            './mines/p10.png',
+        ];
+
+        function displayRandomImage() {
+            const randomIndex = Math.floor(Math.random() * images.length);
+            const imgElement = document.createElement('img');
+            imgElement.src = images[randomIndex];
+            
+            imageContainer.innerHTML = '';
+            imageContainer.appendChild(imgElement);
+            
+            startButton.disabled = true;
+            setTimeout(() => {
+                startButton.disabled = false;
+            }, 7000);
+        }
+
+        displayRandomImage();
+    </script>
+</body>
+</html>

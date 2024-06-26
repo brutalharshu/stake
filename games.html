@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Choice</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0A0F24; /* Dark blue background */
+            color: #ffffff; /* White text color */
+        }
+        .login-container {
+            text-align: center;
+        }
+        .login-box {
+            padding: 70px;
+            border: 1px solid #1D2738; /* Slightly lighter blue border */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            background-color: #131A33; /* Slightly lighter background */
+        }
+        .game-choice img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>Choose a Game</h2>
+            <div class="game-choice">
+                <img src="mineslogo.png" onclick="chooseGame('mine')"> <!-- Replace with your mine image path -->
+                <img src="crashlogo.png" onclick="chooseGame('crash')"> <!-- Replace with your crash image path -->
+            </div>
+        </div>
+    </div>
+    <script>
+        function chooseGame(game) {
+            if (game === 'mine') {
+                window.location.href = 'mine.html';
+            } else if (game === 'crash') {
+                window.location.href = 'crash.html';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -45,6 +45,14 @@
             color: #ffffff;
             cursor: pointer;
         }
+        .game-choice img {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            cursor: pointer;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
@@ -64,11 +72,6 @@
             <input type="text" id="username" placeholder="Username">
             <input type="password" id="password" placeholder="Password">
             <button onclick="login()">Login</button>
-        </div>
-        <div class="login-box" id="gameChoice" style="display: none;">
-            <h2>Choose a Game</h2>
-            <button onclick="chooseGame('mine')">Mine</button>
-            <button onclick="chooseGame('crash')">Crash</button>
         </div>
     </div>
     <script>
@@ -119,18 +122,9 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             if (username === password && password === username) {
-                document.getElementById('loginInput').style.display = 'none';
-                document.getElementById('gameChoice').style.display = 'block';
+                window.location.href = 'games.html';
             } else {
                 alert('Invalid login');
-            }
-        }
-
-        function chooseGame(game) {
-            if (game === 'mine') {
-                window.location.href = 'mine.html';
-            } else if (game === 'crash') {
-                window.location.href = 'crash.html';
             }
         }
     </script>
